@@ -11,7 +11,10 @@
     },
     {
       "type": "patch",
-      "path": "pygtk.patch"
+      "paths": [
+        "pygtk.patch",
+        "pygtk-c99.patch"
+      ]
     },
     {
       "type": "shell",
@@ -30,6 +33,8 @@
     "/share/pygtk"
   ],
   "modules": [
+    "../python2.7/python-2.7.json",
+    "../gtk2/gtk2.json",
     {
       "name": "python2-pycairo",
       "buildsystem": "meson",
@@ -73,6 +78,11 @@
     {
       "name": "libglade",
       "rm-configure": true,
+      "build-options": {
+        "env": {
+          "GTKDOCIZE": "true"
+        }
+      },
       "cleanup": [
         "/bin",
         "/include/libglade-2.0",
